@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
+import mongoose from "mongoose";
 dotenv.config();
 
 const app = express();
@@ -13,10 +14,15 @@ app.get("/", (req, res) => {
 let connectionURL = process.env.MONGO_URI;
 connectionURL = connectionURL.replace("<username>", process.env.USER_NAME);
 connectionURL = connectionURL.replace("<password>", process.env.USER_PASSWORD);
+// Give a Database name and url query parameter
 connectionURL = `${connectionURL}/${process.env.DATABASE_NAME}?${process.env.DATABASE_URL_QUREY}`;
 console.log("connection URL: ", connectionURL);
-// app listen
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port:http://localhost:${PORT}`);
+//NOTE - Connection to the database
+mongoose.connect(connectionURL, {}).then(() => {
+  console.log("Database connected");
+  // app listen
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port:http://localhost:${PORT}`);
+  });
 });

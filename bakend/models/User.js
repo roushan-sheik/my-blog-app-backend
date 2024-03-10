@@ -18,3 +18,6 @@ const UserSchema = new Schema(
   },
   { timestamps: true }
 );
+//  create a user model 
+const User = ( "User", UserSchema );
+export default User

@@ -3,13 +3,18 @@ import express from "express";
 dotenv.config();
 
 const app = express();
-
+// bais route
 app.get("/", (req, res) => {
   res
     .status(200)
     .json({ name: "Arifa moni", age: 20, email: "arifa@gmail.com" });
 });
-
+// connection url
+let connectionURL = process.env.MONGO_URI;
+connectionURL = connectionURL.replace("<username>", process.env.USER_NAME);
+connectionURL = connectionURL.replace("<password>", process.env.USER_PASSWORD);
+console.log("connection URL: ", connectionURL);
+// app listen
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port:http://localhost:${PORT}`);

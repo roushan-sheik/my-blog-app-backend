@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 const UserSchema = new Schema(
   {
     name: String,
@@ -18,6 +18,6 @@ const UserSchema = new Schema(
   },
   { timestamps: true }
 );
-//  create a user model 
-const User = ( "User", UserSchema );
-export default User
+//  create a user model
+const User = model("User", UserSchema);
+export default User;

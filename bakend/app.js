@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import { seedUser } from "./seed.js";
 dotenv.config();
-
 const app = express();
 // bais route
 app.get("/", (req, res) => {
@@ -27,6 +27,8 @@ mongoose
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Server is running on port:http://localhost:${PORT}`);
+      //NOTE - Create fake user with faker js
+      seedUser();
     });
   })
   .catch((error) => {

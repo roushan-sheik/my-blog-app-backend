@@ -31,5 +31,5 @@ mongoose
   })
   .catch((error) => {
     console.log("Connection faild");
-    console.log("message: ", error.message);
+    console.log("message:", error.message);
   });

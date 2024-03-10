@@ -9,10 +9,11 @@ app.get("/", (req, res) => {
     .status(200)
     .json({ name: "Arifa moni", age: 20, email: "arifa@gmail.com" });
 });
-// connection url
+// connection url import
 let connectionURL = process.env.MONGO_URI;
 connectionURL = connectionURL.replace("<username>", process.env.USER_NAME);
 connectionURL = connectionURL.replace("<password>", process.env.USER_PASSWORD);
+connectionURL = `${connectionURL}/${process.env.DATABASE_NAME}?${process.env.DATABASE_URL_QUREY}`;
 console.log("connection URL: ", connectionURL);
 // app listen
 const PORT = process.env.PORT || 3000;

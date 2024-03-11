@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import User from "./models/User.js";
 import { seedUser } from "./seed.js";
 dotenv.config();
 const app = express();
@@ -21,7 +22,7 @@ connectionURL = `${connectionURL}/${process.env.DATABASE_NAME}?${process.env.DAT
 //NOTE - Connection to the database
 mongoose
   .connect(connectionURL, {})
-  .then(() => {
+  .then(async () => {
     console.log("Database connected");
     // app listen
     const PORT = process.env.PORT || 3000;
@@ -30,6 +31,9 @@ mongoose
       //NOTE - Create fake user with faker js
       seedUser();
     });
+    // check users and log them
+    const users = await User.find({});
+    console.log(users);
   })
   .catch((error) => {
     console.log("Connection faild");

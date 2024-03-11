@@ -16,7 +16,7 @@ const UserSchema = new Schema(
     },
     // for timestamps add second argument {timestamps: true}
   },
-  { timestamps: true }
+  { timestamps: true, id: true }
 );
 //  create a user model
 const User = model("User", UserSchema);
